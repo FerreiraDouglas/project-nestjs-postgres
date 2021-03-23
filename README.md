@@ -1,10 +1,13 @@
-## Installation
+## Subir o container docker
+Obs.: Certifique-se que o docker esteja instalado na maquína, após isso basta subir o container docker.
+
+$ docker-compose up
+## Instalação
 
 ```bash
 $ yarn install
 ```
-
-## Running the app
+## Subir aplicação
 
 ```bash
 # development
@@ -14,7 +17,11 @@ $ npm run start
 $ npm run start:dev
 ```
 
-## Test
+## Acesso ao Swagger
+
+http://localhost:3000/docs/
+
+## Test Unitários/implementação futura...
 
 ```bash
 # unit tests
