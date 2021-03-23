@@ -6,14 +6,12 @@ import {
   } from '@nestjs/common';
   import { InjectRepository } from '@nestjs/typeorm';
   import { UserRepository } from './users.repository';
-   
+  import { CreateUserDto } from './dto/create-user.dto';
   import { User } from './user.entity';
-import { CreateUserDto } from './dtos/create-user.dto';
-import { UserRole } from './enum';
-import { UpdateUserDto } from './dtos/update-users.dto';
-import { FindUsersQueryDto } from './dtos/ find-users-query.dto';
-  
-  
+  import { UserRole } from './user-roles.enum';
+import { UpdateUserDto } from './dto/update-users.dto';
+import { FindUsersQueryDto } from './dto/ find-users-query.dto';
+   
    
   
   @Injectable()

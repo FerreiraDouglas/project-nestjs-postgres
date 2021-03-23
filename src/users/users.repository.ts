@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { User } from './user.entity';
- 
- 
+import { CreateUserDto } from './dto/create-user.dto';
+import { UserRole } from './user-roles.enum';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 import {
@@ -9,9 +9,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { CredentialsDto } from '../auth/dto/credentials.dto';
-import { FindUsersQueryDto } from './dtos/ find-users-query.dto';
-import { CreateUserDto } from './dtos/create-user.dto';
-import { UserRole } from './enum';
+import { FindUsersQueryDto } from './dto/ find-users-query.dto';
  
 
 @EntityRepository(User)
@@ -76,6 +74,14 @@ export class UserRepository extends Repository<User> {
         );
       }
     }
+  }
+
+  async changePassword(id: string, password: string) {
+    const user = await this.findOne(id);
+    user.salt = await bcrypt.genSalt();
+    user.password = await this.hashPassword(password, user.salt);
+    user.recoverToken = null;
+    await user.save();
   }
 
   async checkCredentials(credentialsDto: CredentialsDto): Promise<User> {
