@@ -12,6 +12,7 @@ services:
     environment:
       POSTGRES_USER: pguser
       POSTGRES_PASSWORD: pgpassword
+      POSTGRES_DB: nestjs
 
   adminer:
     image: adminer
@@ -20,4 +21,6 @@ services:
       - 8080:8080
 
 volumes:
+  api-logs:
   pg-data:
+  
